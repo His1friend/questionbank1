@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tmstestmaker
+    username: root
+    password: zxcvbnm,./
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml  # 确保能够找到所有 Mapper XML
+  type-aliases-package: org.homework.questions_bank.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+jwt:
+  enabled: false
+
+logging:
+  level:
+    org.mybatis: DEBUG
+    org.homework.questions_bank: DEBUG
