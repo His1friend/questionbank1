@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@MapperScan("org.homework.questions_bank.mapper")
 public class QuestionsBankApplication {
 
     public static void main(String[] args) {

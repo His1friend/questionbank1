@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.homework.questions_bank.mapper.KnowledgeEdgeMapper">
+
+    <resultMap id="BaseResultMap" type="org.homework.questions_bank.entity.KnowledgeEdge">
+            <result property="sourceKid" column="source_kid" jdbcType="INTEGER"/>
+            <result property="targetKid" column="target_kid" jdbcType="INTEGER"/>
+            <result property="relation" column="relation" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM knowledge_edge
+    </select>
+
+    <sql id="Base_Column_List">
+        source_kid,target_kid,relation
+    </sql>
+</mapper>
