@@ -7,12 +7,16 @@ import org.homework.questions_bank.entity.Users;
 import org.homework.questions_bank.service.UsersService;
 import org.homework.questions_bank.mapper.UsersMapper;
 import org.homework.questions_bank.util.LoginRequest;
+import org.homework.questions_bank.util.MD5Util;
+import org.homework.questions_bank.util.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
 import java.util.Date;
 
 import java.util.List;
@@ -33,7 +37,21 @@ public class UsersServiceImpl implements UsersService{
     }
     @Override
     public Users validateUser(LoginRequest loginRequest) {
-        return usersMapper.login(loginRequest.getUsername(), loginRequest.getPassword());
+        return usersMapper.login(loginRequest.getUsername(),MD5Util.md5(loginRequest.getPassword().toString()));
+    }
+    @Override
+    public String registerUser(RegisterRequest registerRequest){
+        Users existingUser = usersMapper.findByUsername(registerRequest.getMemberName());
+        if (existingUser != null) {
+            return "Username already exists!";
+        }
+        String encryptedPassword = MD5Util.md5(registerRequest.getPassword().toString());
+        Users user = new Users();
+        user.setMemberName(registerRequest.getMemberName());
+        user.setPassword(encryptedPassword);
+        user.setRole(registerRequest.getRole());
+        usersMapper.insertUser(user);
+        return "Ok";
     }
 
 

@@ -3,6 +3,7 @@ package org.homework.questions_bank.service;
 import org.homework.questions_bank.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.homework.questions_bank.util.LoginRequest;
+import org.homework.questions_bank.util.RegisterRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,5 +18,6 @@ public interface UsersService  {
 
     List<Users> list();
     public Users validateUser(LoginRequest loginRequest);
+    String registerUser(RegisterRequest registerRequest);
 
 }

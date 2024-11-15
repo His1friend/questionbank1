@@ -1,5 +1,6 @@
 package org.homework.questions_bank.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -21,6 +22,10 @@ public interface UsersMapper {
             "        WHERE member_name = #{username}\n" +
             "          AND password = #{password}")*/
     Users login(@Param("username") String username, @Param("password") String password);
+    @Select(" SELECT * FROM users WHERE member_name = #{username} LIMIT 1;")
+    Users findByUsername(String username);
+    @Insert("INSERT INTO users (member_name, password,role) VALUES (#{memberName}, #{password},#{role});")
+    void insertUser(Users user);
 
 }
 

@@ -8,6 +8,7 @@ import org.homework.questions_bank.entity.Users;
 import org.homework.questions_bank.service.UsersService;
 import org.homework.questions_bank.util.JwtUtil;
 import org.homework.questions_bank.util.LoginRequest;
+import org.homework.questions_bank.util.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,12 +55,14 @@ public class UserController {
         return ResponseEntity.ok(isValid);
     }
     @PostMapping("/register")
-    public Result register(@RequestBody LoginRequest loginRequest)
+    public Result register(@RequestBody RegisterRequest registerRequest)
     {
         log.info("注册用户");
-
-        return Result.success();
+        String message=usersService.registerUser(registerRequest);
+        return Result.success(message);
     }
+/*    @DeleteMapping("/delete")
+    public Result delete()*/
 
 }
 

@@ -20,6 +20,14 @@ public class Users implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer uid;
 
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
     /**
      * 名字
      */
