@@ -20,4 +20,5 @@ public interface UsersService  {
     public Users validateUser(LoginRequest loginRequest);
     String registerUser(RegisterRequest registerRequest);
 
+    String deleteUser(String memberName);
 }

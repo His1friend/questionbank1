@@ -61,8 +61,13 @@ public class UserController {
         String message=usersService.registerUser(registerRequest);
         return Result.success(message);
     }
-/*    @DeleteMapping("/delete")
-    public Result delete()*/
+    @DeleteMapping("/{member_name}")
+    public Result delete(@PathVariable String member_name)
+    {
+        log.info("删除用户");
+        return Result.success( usersService.deleteUser(member_name));
+
+    }
 
 }
 

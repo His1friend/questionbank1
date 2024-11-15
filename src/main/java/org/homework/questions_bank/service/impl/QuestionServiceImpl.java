@@ -32,5 +32,10 @@ public class QuestionServiceImpl implements QuestionService {
     public void delete(int id) {
         questionsMapper.delete(id);
     }
+    @Override
+    public void update(Question question){
+        questionsMapper.update(question);
+
+    }
 
 }

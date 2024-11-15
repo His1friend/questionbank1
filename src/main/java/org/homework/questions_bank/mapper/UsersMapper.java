@@ -1,9 +1,6 @@
 package org.homework.questions_bank.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.homework.questions_bank.entity.Users;
 
 import java.util.List;
@@ -26,7 +23,8 @@ public interface UsersMapper {
     Users findByUsername(String username);
     @Insert("INSERT INTO users (member_name, password,role) VALUES (#{memberName}, #{password},#{role});")
     void insertUser(Users user);
-
+    @Delete(" DELETE FROM users WHERE member_name = #{memberName};")
+    void deleteUser(String memberName);
 }
 
 

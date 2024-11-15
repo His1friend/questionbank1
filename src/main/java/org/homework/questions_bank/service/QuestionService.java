@@ -11,4 +11,6 @@ public interface QuestionService {
     List<Question> list();
     public void add(Question question);
     public void delete(int id);
+
+    void update(Question question);
 }

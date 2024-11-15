@@ -41,4 +41,12 @@ public class QuestionController {
         questionService.delete(id);
         return Result.success();
     }
+    @PostMapping("/add")
+    public Result update(@RequestBody Question question)
+    {
+        log.info("添加题目");
+        log.info(String.valueOf(question));
+        questionService.update(question);
+        return Result.success();
+    }
 }

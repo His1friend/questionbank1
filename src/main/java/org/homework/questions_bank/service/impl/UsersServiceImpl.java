@@ -53,6 +53,17 @@ public class UsersServiceImpl implements UsersService{
         usersMapper.insertUser(user);
         return "Ok";
     }
+    @Override
+    public String deleteUser(String memberName)
+    {
+        Users existingUser = usersMapper.findByUsername(memberName);
+        if (existingUser == null) {
+            return "Username not exists!";
+        }
+        usersMapper.deleteUser(memberName);
+        return  "OK";
+
+    }
 
 
 }

@@ -1,9 +1,6 @@
 package org.homework.questions_bank.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.homework.questions_bank.entity.Question;
 
 import java.util.List;
@@ -17,4 +14,6 @@ public interface QuestionsMapper {
     void insert(Question question);
     @Delete("delete from questions where #{id}=qid")
     void delete(int id);
+    @Update("update questions SET question_text = #{questionText},option=#{option} WHERE qid = #{qid};")
+    void update(Question question);
 }
