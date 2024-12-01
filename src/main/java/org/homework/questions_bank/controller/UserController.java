@@ -1,10 +1,7 @@
 package org.homework.questions_bank.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.homework.questions_bank.entity.Question;
-import org.homework.questions_bank.entity.Result;
-import org.homework.questions_bank.entity.TokenRequest;
-import org.homework.questions_bank.entity.Users;
+import org.homework.questions_bank.entity.*;
 import org.homework.questions_bank.service.UsersService;
 import org.homework.questions_bank.util.JwtUtil;
 import org.homework.questions_bank.util.LoginRequest;
@@ -40,9 +37,13 @@ public class UserController {
         if (user != null) {
             // 用户验证成功，生成 JWT
             String token = jwtUtil.generateToken(user.getUsername());
-
+            Users users=usersService.getUers(user.getUsername());
             // 返回用户信息和 JWT
-            return ResponseEntity.ok( token);
+            Map<String, Object> response = new HashMap<>();
+            response.put("user", users);
+            response.put("token", token);
+            log.info(token);
+            return ResponseEntity.ok(response);
         } else {
             // 用户验证失败，返回 401 状态
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
@@ -67,6 +68,12 @@ public class UserController {
         log.info("删除用户");
         return Result.success( usersService.deleteUser(member_name));
 
+    }
+    @PostMapping("/updatePassword")
+    public Result updatePassword(@RequestBody PasswordUpdateRequest passwordUpdateRequest)
+    {
+        log.info("修改密码");
+        return Result.success(usersService.updatePassword(passwordUpdateRequest.getUserId(),passwordUpdateRequest.getNewPassword()));
     }
 
 }

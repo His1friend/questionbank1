@@ -47,6 +47,7 @@ public class UsersServiceImpl implements UsersService{
         }
         String encryptedPassword = MD5Util.md5(registerRequest.getPassword().toString());
         Users user = new Users();
+        user.setUid(registerRequest.getUid());
         user.setMemberName(registerRequest.getMemberName());
         user.setPassword(encryptedPassword);
         user.setRole(registerRequest.getRole());
@@ -63,6 +64,19 @@ public class UsersServiceImpl implements UsersService{
         usersMapper.deleteUser(memberName);
         return  "OK";
 
+    }
+    @Override
+    public Users getUers(String username) {
+        Users user = usersMapper.findByUsername(username);
+        return user;
+    }
+
+    @Override
+    public Object updatePassword(int userId, String newPassword) {
+        Users users= usersMapper.selectById(userId);
+        users.setPassword(MD5Util.md5(newPassword));
+        usersMapper.updateUser(users);
+        return "密码修改成功";
     }
 
 

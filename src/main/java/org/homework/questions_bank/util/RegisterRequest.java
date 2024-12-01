@@ -7,7 +7,7 @@ public class RegisterRequest {
     public String getMemberName() {
         return member_name;
     }
-
+    private int uid;
     private String member_name;
     private String password;
 

@@ -22,4 +22,5 @@ public class Question {
     private Timestamp createdAt;      // 创建时间
     private String maker;             // 出题者
     private String answer;
+
 }

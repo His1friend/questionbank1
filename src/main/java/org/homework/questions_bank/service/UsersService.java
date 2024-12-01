@@ -21,4 +21,7 @@ public interface UsersService  {
     String registerUser(RegisterRequest registerRequest);
 
     String deleteUser(String memberName);
+    Users getUers(String username);
+
+    Object updatePassword(int userId, String newPassword);
 }

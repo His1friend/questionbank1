@@ -25,6 +25,11 @@ public interface UsersMapper {
     void insertUser(Users user);
     @Delete(" DELETE FROM users WHERE member_name = #{memberName};")
     void deleteUser(String memberName);
+
+    @Select("SELECT * FROM users WHERE uid = #{userId};")
+    Users selectById(int userId);
+    @Update("UPDATE users SET member_name = #{memberName}, password = #{password}, role = #{role} WHERE uid = #{uid};")
+    void updateUser(Users user);
 }
 
 

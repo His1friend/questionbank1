@@ -2,6 +2,8 @@ package org.homework.questions_bank.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.homework.questions_bank.entity.AnswerRequest;
+import org.homework.questions_bank.entity.FilterOption;
 import org.homework.questions_bank.entity.Question;
 import org.homework.questions_bank.entity.Result;
 import org.homework.questions_bank.service.QuestionService;
@@ -22,6 +24,7 @@ public class QuestionController {
     @GetMapping("/list")
     public Result list()
     {
+
         log.info("查询所有题目数据");
         List<Question> questionList=questionService.list();
         return Result.success(questionList);
@@ -41,12 +44,25 @@ public class QuestionController {
         questionService.delete(id);
         return Result.success();
     }
-    @PostMapping("/add")
-    public Result update(@RequestBody Question question)
+    @GetMapping("/{qid}")
+    public Result showquestion(@PathVariable("qid") Integer id)
     {
-        log.info("添加题目");
-        log.info(String.valueOf(question));
-        questionService.update(question);
-        return Result.success();
+        log.info("展示题目");
+        Question question=questionService.show(id);
+        return Result.success(question);
+    }
+    @PostMapping("/answer/{qid}")
+    public Result answer(@PathVariable("qid") Integer id, @RequestBody AnswerRequest answerRequest)
+    {
+        log.info("判断对错");
+        return Result.success(questionService.answer(id,answerRequest.getAnswer()));
+
+    }
+    @GetMapping("/filter-options")
+    public Result filterOptions()
+    {
+        log.info("根据条件筛选题目");
+        FilterOption questionList=questionService.filterOptions();
+        return Result.success(questionList);
     }
 }
