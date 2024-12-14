@@ -13,4 +13,13 @@
     <sql id="Base_Column_List">
         id,combination_id,question_id
     </sql>
+    <select id="selectList" resultType="org.homework.questions_bank.entity.QuestionCombinationRelations">
+        SELECT * FROM question_combination_relations
+    </select>
+    <select id="getQuestionIdsByCombinationId" resultType="java.lang.Integer">
+        SELECT question_id
+        FROM question_combination_relations
+        WHERE combination_id = #{combinationId}
+    </select>
+
 </mapper>
