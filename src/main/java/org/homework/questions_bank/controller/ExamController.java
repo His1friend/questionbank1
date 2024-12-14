@@ -9,10 +9,7 @@ import org.homework.questions_bank.service.ExamsService;
 import org.homework.questions_bank.service.QuestionCombinationRelationsService;
 import org.homework.questions_bank.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +42,20 @@ public class ExamController {
             questions.add(questionService.show(questionId));
         });
         return Result.success(questions);
+    }
+    @PostMapping("/addExam")
+    public Result addExam(@RequestBody Exams exams) {
+        examsService.save(exams);
+        return Result.success();
+    }
+    @PostMapping("/addQuestion")
+    public Result addQuestion(@RequestBody QuestionCombinationRelations questionCombinationRelations) {
+        questionCombinationRelationsService.save(questionCombinationRelations);
+        return Result.success();
+    }
+    @DeleteMapping("/deleteQuestion")
+    public Result deleteQuestion(@RequestBody QuestionCombinationRelations questionCombinationRelations) {
+        questionCombinationRelationsService.removetheexams(questionCombinationRelations);
+        return Result.success();
     }
 }

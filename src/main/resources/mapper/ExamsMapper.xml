@@ -18,4 +18,8 @@
     <select id="selectList" resultType="org.homework.questions_bank.entity.Exams">
         SELECT * FROM exams
     </select>
+    <insert id="insert" parameterType="org.homework.questions_bank.entity.QuestionCombinationRelations">
+        INSERT INTO question_combination_relations (combinationId,questionId)
+        VALUES (#{combinationId}, #{questionId})
+    </insert>
 </mapper>

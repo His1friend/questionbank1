@@ -17,8 +17,6 @@ public class QuestionCombinationRelations implements Serializable {
     /**
      * 
      */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
 
     /**
      * 
@@ -45,8 +43,8 @@ public class QuestionCombinationRelations implements Serializable {
             return false;
         }
         QuestionCombinationRelations other = (QuestionCombinationRelations) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getCombinationId() == null ? other.getCombinationId() == null : this.getCombinationId().equals(other.getCombinationId()))
+        return
+            (this.getCombinationId() == null ? other.getCombinationId() == null : this.getCombinationId().equals(other.getCombinationId()))
             && (this.getQuestionId() == null ? other.getQuestionId() == null : this.getQuestionId().equals(other.getQuestionId()));
     }
 
@@ -54,7 +52,6 @@ public class QuestionCombinationRelations implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getCombinationId() == null) ? 0 : getCombinationId().hashCode());
         result = prime * result + ((getQuestionId() == null) ? 0 : getQuestionId().hashCode());
         return result;
@@ -66,7 +63,6 @@ public class QuestionCombinationRelations implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
         sb.append(", combinationId=").append(combinationId);
         sb.append(", questionId=").append(questionId);
         sb.append(", serialVersionUID=").append(serialVersionUID);

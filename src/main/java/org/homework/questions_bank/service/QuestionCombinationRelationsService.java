@@ -1,5 +1,6 @@
 package org.homework.questions_bank.service;
 
+import org.homework.questions_bank.entity.Exams;
 import org.homework.questions_bank.entity.QuestionCombinationRelations;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,4 +13,6 @@ import java.util.List;
 */
 public interface QuestionCombinationRelationsService extends IService<QuestionCombinationRelations> {
     List<Integer> getQuestionIdsByCombinationId(Integer combinationId);
+
+    void removetheexams(QuestionCombinationRelations questionCombinationRelations);
 }
