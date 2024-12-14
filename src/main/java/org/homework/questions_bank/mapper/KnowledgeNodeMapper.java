@@ -3,6 +3,7 @@ package org.homework.questions_bank.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.homework.questions_bank.entity.KnowledgeNode;
 
 /**
@@ -13,6 +14,9 @@ import org.homework.questions_bank.entity.KnowledgeNode;
 */
 @Mapper
 public interface KnowledgeNodeMapper extends BaseMapper<KnowledgeNode> {
+    @Select("SELECT * FROM knowledge_node WHERE kid = #{id}")
+    KnowledgeNode selectById(Integer id);
+    int updateById(KnowledgeNode knowledgeNode);
 
 }
 

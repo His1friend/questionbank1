@@ -17,4 +17,11 @@
         SELECT <include refid="Base_Column_List" />
         FROM knowledge_node
     </select>
+    <update id="updateById" statementType="CALLABLE">
+        {call UpdateKnowledgeNode(
+                #{kid, mode=IN, jdbcType=BIGINT},
+                #{kname, mode=IN, jdbcType=VARCHAR},
+                #{description, mode=IN, jdbcType=LONGVARCHAR}
+              )}
+    </update>
 </mapper>

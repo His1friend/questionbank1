@@ -65,4 +65,11 @@ public class QuestionController {
         FilterOption questionList=questionService.filterOptions();
         return Result.success(questionList);
     }
+    @PutMapping("/update")
+    public Result update(@RequestBody Question question)
+    {
+        log.info("更新题目");
+        questionService.update(question);
+        return Result.success();
+    }
 }

@@ -8,9 +8,7 @@ import org.homework.questions_bank.entity.Result;
 import org.homework.questions_bank.service.KnowledgeEdgeService;
 import org.homework.questions_bank.service.KnowledgeNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,5 +43,21 @@ public class KnowlEdgeController {
         response.put("edges",knowledgeEdgeService.list());
         return response;
     }
+    @GetMapping("/node/{kid}")
+    public Result showNode(@PathVariable("kid") Integer id)
+    {
+        log.info("查询知识点数据");
+        KnowledgeNode knowledgeNode=knowledgeNodeService.getById(id);
+        return Result.success(knowledgeNode);
+    }
+     @PutMapping ("/node")
+    public Result updateNode(@RequestBody KnowledgeNode knowledgeNode)
+    {
+        log.info("修改知识点数据");
+        knowledgeNodeService.updateById(knowledgeNode);
+        return Result.success();
+    }
+
+
  
 }
